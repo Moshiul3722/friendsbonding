@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Batch;
 use App\Models\Profile;
+use App\Models\Health;
+use App\Models\Occupation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserProfileController extends Controller
 {
 
-    public function index() {
+    public function index()
+    {
         return view('profile.index');
     }
 
@@ -19,8 +22,8 @@ class UserProfileController extends Controller
         // dd($request->all());
 
         $request->validate([
-            'fname'=>['required','max:255','string'],
-            'lname'=>['required','max:255','string'],
+            'fname' => ['required', 'max:255', 'string'],
+            'lname' => ['required', 'max:255', 'string'],
             'uname' => ['required', 'max:255', 'string'],
             'group' => ['required', 'string'],
             'session' => ['required', 'string'],
@@ -32,16 +35,16 @@ class UserProfileController extends Controller
             'permanentadd' => ['required', 'string'],
             'mobile' => ['required', 'string'],
             'emergencyContact' => ['required', 'string'],
+            'blood_group' => ['required', 'string'],
+            'occupation' => ['required', 'string'],
+            'organization' => ['required', 'string'],
+            'designation' => ['required', 'string'],
+            'officeaddress' => ['required', 'string'],
         ]);
 
         // $request->validate([
-        //     'blood_group' => ['required', 'string'],
         //     'fbid' => ['required', 'string'],
         //     'whatapp' => ['required', 'string'],
-        //     'occupation' => ['required', 'string'],
-        //     'organization' => ['required', 'string'],
-        //     'designation' => ['required', 'string'],
-        //     'officeaddress' => ['required', 'string'],
         //     'userImg' => ['image'],
         //     'profileImg' => ['image'],
         //     'email' => ['required', 'max:255', 'string', 'unique:clients,email'],
@@ -68,6 +71,19 @@ class UserProfileController extends Controller
             'user_id' => Auth::user()->id,
         ]);
 
+        Health::create([
+            'blood_group' => $request->blood_group,
+            'user_id' => Auth::user()->id,
+        ]);
+
+        Occupation::create([
+            'occupation' => $request->occupation,
+            'organization' => $request->organization,
+            'designation' => $request->designation,
+            'officeaddress' => $request->officeaddress,
+            'user_id' => Auth::user()->id,
+
+        ]);
 
         return redirect()->route('profile')->with('success', 'Client added successfully');
     }
