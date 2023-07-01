@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('occupations', function (Blueprint $table) {
             $table->id();
+            $table->string('occupation')->nullable();
+            $table->string('organization')->nullable();
+            $table->string('designation')->nullable();
+            $table->string('officeaddress')->nullable();
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }

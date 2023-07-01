@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('batches', function (Blueprint $table) {
             $table->id();
+            $table->string('group')->nullable();
+            $table->string('batch')->nullable();
+            $table->string('session')->nullable();
+            $table->string('regno')->nullable();
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }

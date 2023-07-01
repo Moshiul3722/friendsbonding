@@ -62,12 +62,4 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
-
-    public function storeProfile(Request $request)
-    {
-        dd($request->all());
-        $request->validate([
-
-        ]);
-    }
 }

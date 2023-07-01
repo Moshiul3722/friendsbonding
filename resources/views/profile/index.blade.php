@@ -120,8 +120,11 @@
                                     <!-- Date fo Birth Fields -->
                                     <x-input-label for="dob" :value="__('Date of Brith')" />
                                     <div class="mb-3">
-                                        <x-text-input id="dob" name="dob" type="date" :value="old('dob')"
+                                        <x-text-input id="trigger" name="dob" type="date" placeholder="yyyy-mm-dd" :value="old('dob')"
                                             required autofocus autocomplete="regno" />
+                                        {{-- <input type="text" id="" name="birthday"> --}}
+                                        {{-- <x-text-input id="dob" name="dob" type="date" :value="old('dob')"
+                                            required autofocus autocomplete="regno" /> --}}
 
                                         <x-input-error :messages="$errors->get('dob')" class="mt-2" />
                                     </div>
@@ -144,7 +147,7 @@
                                         <div class="col-6">
                                             <!-- Blood groups -->
                                             <div class="mb-3">
-                                                <x-select-input name="blood-group" title="Blood Group" autofocus
+                                                <x-select-input name="blood_group" title="Blood Group" autofocus
                                                     :options="[
                                                         'a+' => 'A+',
                                                         'a-' => 'A-',
