@@ -40,9 +40,9 @@
                                             <x-input-label for="fname" :value="__('First Name')" />
                                             <div class="mb-3">
                                                 <x-text-input id="fname" name="fname" :value="old('fname')"
-                                                    placeholder="First Name" required autofocus />
+                                                    placeholder="First Name" autofocus />
 
-                                                <x-input-error :messages="$errors->get('fname')" class="mt-2" />
+                                                <x-input-error name="fname" class="mt-2" />
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -50,9 +50,8 @@
                                             <x-input-label for="lname" :value="__('Last Name')" />
                                             <div class="mb-3">
                                                 <x-text-input id="lname" name="lname" :value="old('lname')"
-                                                    placeholder="Last Name" required autofocus />
+                                                    placeholder="Last Name"  autofocus />
 
-                                                <x-input-error :messages="$errors->get('lname')" class="mt-2" />
                                             </div>
 
 
@@ -62,10 +61,9 @@
                                     <!-- Input Field -->
                                     <x-input-label for="uname" :value="__('User Name/ Nick Name')" />
                                     <div class="mb-3">
-                                        <x-text-input id="uname" name="uname" :value="old('lname')" required autofocus
+                                        <x-text-input id="uname" name="uname" :value="old('lname')"  autofocus
                                             autocomplete="uname" placeholder="User Name/ Nick Name" />
 
-                                        <x-input-error :messages="$errors->get('uname')" class="mt-2" />
                                     </div>
 
                                     <!-- Group Radio Fields -->
@@ -77,7 +75,6 @@
                                             'businessStudy' => 'Business Study',
                                         ]" selected="science" />
 
-                                        <x-input-error :messages="$errors->get('group')" class="mt-2" />
                                     </div>
                                     <div class="row">
 
@@ -112,21 +109,19 @@
                                     <x-input-label for="regno" :value="__('Registration No.')" />
                                     <div class="mb-3">
                                         <x-text-input id="regno" name="regno" type="number" :value="old('regno')"
-                                            required autofocus autocomplete="regno" placeholder="Registration No.." />
+                                             autofocus autocomplete="regno" placeholder="Registration No.." />
 
-                                        <x-input-error :messages="$errors->get('regno')" class="mt-2" />
                                     </div>
 
                                     <!-- Date fo Birth Fields -->
                                     <x-input-label for="dob" :value="__('Date of Brith')" />
                                     <div class="mb-3">
                                         <x-text-input id="trigger" name="dob" type="date" placeholder="yyyy-mm-dd" :value="old('dob')"
-                                            required autofocus autocomplete="regno" />
+                                             autofocus autocomplete="regno" />
                                         {{-- <input type="text" id="" name="birthday"> --}}
                                         {{-- <x-text-input id="dob" name="dob" type="date" :value="old('dob')"
                                             required autofocus autocomplete="regno" /> --}}
 
-                                        <x-input-error :messages="$errors->get('dob')" class="mt-2" />
                                     </div>
 
                                     <div class="row">
@@ -180,10 +175,9 @@
                                             <!-- Mobile No Field -->
                                             <x-input-label for="mobile" :value="__('Mobile No.')" />
                                             <div class="mb-3">
-                                                <x-text-input id="mobile" name="mobile" :value="old('mobile')" required
+                                                <x-text-input id="mobile" name="mobile" :value="old('mobile')"
                                                     autofocus autocomplete="mobile" placeholder="Mobile No." />
 
-                                                <x-input-error :messages="$errors->get('occupation')" class="mt-2" />
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -198,10 +192,9 @@
                                             <x-input-label for="fbid" :value="__('Facebook ID:')" />
                                             <div class="mb-3">
                                                 <x-text-input id="fbid" name="fbid" :value="old('fbid')"
-                                                    required autofocus autocomplete="fbid"
+                                                     autofocus autocomplete="fbid"
                                                     placeholder="Facebook ID" />
 
-                                                <x-input-error :messages="$errors->get('fbid')" class="mt-2" />
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -209,10 +202,9 @@
                                             <x-input-label for="whatapp" :value="__('Whats APP No.')" />
                                             <div class="mb-3">
                                                 <x-text-input id="whatapp" name="whatapp" :value="old('whatapp')"
-                                                    required autofocus autocomplete="whatapp"
+                                                     autofocus autocomplete="whatapp"
                                                     placeholder="Whats App no." />
 
-                                                <x-input-error :messages="$errors->get('whatapp')" class="mt-2" />
                                             </div>
                                         </div>
                                     </div>
@@ -224,10 +216,9 @@
                                             <x-input-label for="occupation" :value="__('Occupation')" />
                                             <div class="mb-3">
                                                 <x-text-input id="occupation" name="occupation" :value="old('occupation')"
-                                                    required autofocus autocomplete="occupation"
+                                                     autofocus autocomplete="occupation"
                                                     placeholder="Occupation" />
 
-                                                <x-input-error :messages="$errors->get('occupation')" class="mt-2" />
                                             </div>
                                         </div>
                                         <div class="col-4">
@@ -235,10 +226,9 @@
                                             <x-input-label for="organization" :value="__('Organization')" />
                                             <div class="mb-3">
                                                 <x-text-input id="organization"
-                                                    name="organization" :value="old('organization')" required autofocus
+                                                    name="organization" :value="old('organization')"  autofocus
                                                     autocomplete="organization" placeholder="Organization" />
 
-                                                <x-input-error :messages="$errors->get('organization')" class="mt-2" />
                                             </div>
                                         </div>
                                         <div class="col-4">
@@ -246,10 +236,9 @@
                                             <x-input-label for="designation" :value="__('Designation')" />
                                             <div class="mb-3">
                                                 <x-text-input id="designation"
-                                                    name="designation" :value="old('Designation')" required autofocus
+                                                    name="designation" :value="old('Designation')"  autofocus
                                                     autocomplete="designation" placeholder="Designation" />
 
-                                                <x-input-error :messages="$errors->get('designation')" class="mt-2" />
                                             </div>
                                         </div>
                                     </div>
@@ -311,7 +300,6 @@
                                             <div class="mb-3">
                                                 <input type="file" class="form-control" name="userImg"
                                                     id="userImg">
-                                                <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                             </div>
 
                                         </div>
@@ -323,7 +311,6 @@
                                                 <input type="file" class="form-control" name="profileImg"
                                                     id="profileImg">
 
-                                                <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                             </div>
                                         </div>
                                     </div>
@@ -334,11 +321,10 @@
                                             <x-input-label for="email" :value="__('Email')" />
                                             <div class="mb-3">
                                                 <x-text-input id="email" class="form-control" type="email"
-                                                    name="email" :value="old('email')" required autofocus
+                                                    name="email" :value="old('email')"  autofocus
                                                     autocomplete="username" placeholder="Email" aria-label="Email"
                                                     aria-describedby="email-addon" />
 
-                                                <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                             </div>
 
                                         </div>
@@ -347,9 +333,8 @@
                                             <x-input-label for="password" :value="__('Password')" />
                                             <div class="mb-3">
                                                 <x-text-input id="password" class="form-control" type="password"
-                                                    name="password" required autocomplete="current-password"
+                                                    name="password"  autocomplete="current-password"
                                                     placeholder="Password" />
-                                                <x-input-error :messages="$errors->get('password')" class="mt-2" />
 
                                             </div>
 
@@ -359,9 +344,8 @@
                                             <x-input-label for="password" :value="__('Confirm Password')" />
                                             <div class="mb-3">
                                                 <x-text-input id="password" class="form-control" type="password"
-                                                    name="password" required autocomplete="current-password"
+                                                    name="password"  autocomplete="current-password"
                                                     placeholder="Confirm Password" />
-                                                <x-input-error :messages="$errors->get('password')" class="mt-2" />
 
                                             </div>
 
