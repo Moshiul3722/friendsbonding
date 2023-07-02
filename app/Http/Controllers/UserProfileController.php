@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Batch;
 use App\Models\Profile;
 use App\Models\Health;
+use App\Models\Media;
 use App\Models\Occupation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,17 +41,19 @@ class UserProfileController extends Controller
             'organization' => ['required', 'string'],
             'designation' => ['required', 'string'],
             'officeaddress' => ['required', 'string'],
+            'fbid' => ['required', 'string'],
+            'whatapp' => ['required', 'string'],
         ]);
 
         // $request->validate([
-        //     'fbid' => ['required', 'string'],
-        //     'whatapp' => ['required', 'string'],
         //     'userImg' => ['image'],
         //     'profileImg' => ['image'],
         //     'email' => ['required', 'max:255', 'string', 'unique:clients,email'],
         //     'password' => ['max:255', 'string'],
         //     'status' => ['not_in:none', 'string'],
         // ]);
+
+
 
         Profile::create([
             'uname' => $request->uname,
@@ -84,6 +87,20 @@ class UserProfileController extends Controller
             'user_id' => Auth::user()->id,
 
         ]);
+
+        $mediaIds =[
+            'fbId'=>$request->fbid,
+            'whatappId'=>$request->whatapp,
+        ];
+
+
+        // dd($mediaIds);
+        foreach($mediaIds as $mediaId){
+            Media::create([
+                'mediaId' => $mediaId,
+                'user_id' => Auth::user()->id
+            ]);
+        }
 
         return redirect()->route('profile')->with('success', 'Client added successfully');
     }

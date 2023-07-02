@@ -50,8 +50,8 @@
                                             <x-input-label for="lname" :value="__('Last Name')" />
                                             <div class="mb-3">
                                                 <x-text-input id="lname" name="lname" :value="old('lname')"
-                                                    placeholder="Last Name"  autofocus />
-
+                                                    placeholder="Last Name" autofocus />
+                                                <x-input-error name="lname" class="mt-2" />
                                             </div>
 
 
@@ -61,9 +61,9 @@
                                     <!-- Input Field -->
                                     <x-input-label for="uname" :value="__('User Name/ Nick Name')" />
                                     <div class="mb-3">
-                                        <x-text-input id="uname" name="uname" :value="old('lname')"  autofocus
+                                        <x-text-input id="uname" name="uname" :value="old('lname')" autofocus
                                             autocomplete="uname" placeholder="User Name/ Nick Name" />
-
+                                        <x-input-error name="uname" class="mt-2" />
                                     </div>
 
                                     <!-- Group Radio Fields -->
@@ -74,7 +74,7 @@
                                             'arts' => 'Arts',
                                             'businessStudy' => 'Business Study',
                                         ]" selected="science" />
-
+                                        <x-input-error name="group" class="mt-2" />
                                     </div>
                                     <div class="row">
 
@@ -87,6 +87,7 @@
                                                         'batch2' => '1999',
                                                         'batch3' => '2000',
                                                     ]" selected="" />
+                                                <x-input-error name="batch" class="mt-2" />
                                             </div>
 
                                         </div>
@@ -99,6 +100,8 @@
                                                         'batch2' => '1999',
                                                         'batch3' => '2000',
                                                     ]" selected="" />
+
+                                                <x-input-error name="session" class="mt-2" />
                                             </div>
 
                                         </div>
@@ -109,15 +112,17 @@
                                     <x-input-label for="regno" :value="__('Registration No.')" />
                                     <div class="mb-3">
                                         <x-text-input id="regno" name="regno" type="number" :value="old('regno')"
-                                             autofocus autocomplete="regno" placeholder="Registration No.." />
-
+                                            autofocus autocomplete="regno" placeholder="Registration No.." />
+                                        <x-input-error name="regno" class="mt-2" />
                                     </div>
 
                                     <!-- Date fo Birth Fields -->
                                     <x-input-label for="dob" :value="__('Date of Brith')" />
                                     <div class="mb-3">
-                                        <x-text-input id="trigger" name="dob" type="date" placeholder="yyyy-mm-dd" :value="old('dob')"
-                                             autofocus autocomplete="regno" />
+                                        <x-text-input id="trigger" name="dob" type="date"
+                                            placeholder="yyyy-mm-dd" :value="old('dob')" autofocus
+                                            autocomplete="regno" />
+                                        <x-input-error name="dob" class="mt-2" />
                                         {{-- <input type="text" id="" name="birthday"> --}}
                                         {{-- <x-text-input id="dob" name="dob" type="date" :value="old('dob')"
                                             required autofocus autocomplete="regno" /> --}}
@@ -135,7 +140,7 @@
                                                         'buddhism' => 'Buddhism',
                                                         'christianity' => 'Christianity',
                                                     ]" selected="" />
-
+                                                <x-input-error name="religion" class="mt-2" />
                                             </div>
 
                                         </div>
@@ -153,7 +158,7 @@
                                                         'ab+' => 'AB+',
                                                         'ab-' => 'AB+',
                                                     ]" selected="" />
-
+                                                <x-input-error name="blood_group" class="mt-2" />
                                             </div>
                                         </div>
                                     </div>
@@ -177,7 +182,7 @@
                                             <div class="mb-3">
                                                 <x-text-input id="mobile" name="mobile" :value="old('mobile')"
                                                     autofocus autocomplete="mobile" placeholder="Mobile No." />
-
+                                                <x-input-error name="mobile" class="mt-2" />
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -192,9 +197,8 @@
                                             <x-input-label for="fbid" :value="__('Facebook ID:')" />
                                             <div class="mb-3">
                                                 <x-text-input id="fbid" name="fbid" :value="old('fbid')"
-                                                     autofocus autocomplete="fbid"
-                                                    placeholder="Facebook ID" />
-
+                                                    autofocus autocomplete="fbid" placeholder="Facebook ID" />
+                                                <x-input-error name="fbid" class="mt-2" />
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -202,9 +206,8 @@
                                             <x-input-label for="whatapp" :value="__('Whats APP No.')" />
                                             <div class="mb-3">
                                                 <x-text-input id="whatapp" name="whatapp" :value="old('whatapp')"
-                                                     autofocus autocomplete="whatapp"
-                                                    placeholder="Whats App no." />
-
+                                                    autofocus autocomplete="whatapp" placeholder="Whats App no." />
+                                                <x-input-error name="whatapp" class="mt-2" />
                                             </div>
                                         </div>
                                     </div>
@@ -216,29 +219,27 @@
                                             <x-input-label for="occupation" :value="__('Occupation')" />
                                             <div class="mb-3">
                                                 <x-text-input id="occupation" name="occupation" :value="old('occupation')"
-                                                     autofocus autocomplete="occupation"
-                                                    placeholder="Occupation" />
-
+                                                    autofocus autocomplete="occupation" placeholder="Occupation" />
+                                                <x-input-error name="occupation" class="mt-2" />
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <!-- Organization Field -->
                                             <x-input-label for="organization" :value="__('Organization')" />
                                             <div class="mb-3">
-                                                <x-text-input id="organization"
-                                                    name="organization" :value="old('organization')"  autofocus
-                                                    autocomplete="organization" placeholder="Organization" />
-
+                                                <x-text-input id="organization" name="organization" :value="old('organization')"
+                                                    autofocus autocomplete="organization"
+                                                    placeholder="Organization" />
+                                                <x-input-error name="organization" class="mt-2" />
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <!-- Designation Field -->
                                             <x-input-label for="designation" :value="__('Designation')" />
                                             <div class="mb-3">
-                                                <x-text-input id="designation"
-                                                    name="designation" :value="old('Designation')"  autofocus
-                                                    autocomplete="designation" placeholder="Designation" />
-
+                                                <x-text-input id="designation" name="designation" :value="old('Designation')"
+                                                    autofocus autocomplete="designation" placeholder="Designation" />
+                                                <x-input-error name="designation" class="mt-2" />
                                             </div>
                                         </div>
                                     </div>
@@ -249,14 +250,18 @@
                                             <!-- Office Address Field -->
                                             <x-input-label for="officeaddress" :value="__('Office Address')" />
                                             <div class="mb-3">
-                                                <x-textarea-input name="officeaddress" id="officeaddress" rows="4" cols="50" :value="old('officeaddress')"/>
+                                                <x-textarea-input name="officeaddress" id="officeaddress"
+                                                    rows="4" cols="50" :value="old('officeaddress')" />
+                                                <x-input-error name="officeaddress" class="mt-2" />
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <!-- Emergency Contact Info -->
                                             <x-input-label for="emergencyContact" :value="__('Emergency Contact Info')" />
                                             <div class="mb-3">
-                                                <x-textarea-input name="emergencyContact" rows="4" cols="50" :value="old('emergencyContact')"/>
+                                                <x-textarea-input name="emergencyContact" rows="4"
+                                                    cols="50" :value="old('emergencyContact')" />
+                                                <x-input-error name="emergencyContact" class="mt-2" />
                                             </div>
                                         </div>
                                     </div>
@@ -267,7 +272,9 @@
 
                                             <x-input-label for="presentadd" :value="__('Present Address')" />
                                             <div class="mb-3">
-                                                <x-textarea-input name="presentadd" rows="4" cols="50" :value="old('presentadd')"/>
+                                                <x-textarea-input name="presentadd" rows="4" cols="50"
+                                                    :value="old('presentadd')" />
+                                                <x-input-error name="presentadd" class="mt-2" />
                                             </div>
 
                                         </div>
@@ -275,7 +282,9 @@
                                             <!-- Permanent Address Field -->
                                             <x-input-label for="permanentadd" :value="__('Permanent Address')" />
                                             <div class="mb-3">
-                                                <x-textarea-input name="permanentadd" rows="4" cols="50" :value="old('permanentadd')"/>
+                                                <x-textarea-input name="permanentadd" rows="4" cols="50"
+                                                    :value="old('permanentadd')" />
+                                                <x-input-error name="permanentadd" class="mt-2" />
                                             </div>
 
                                         </div>
@@ -295,13 +304,22 @@
 
                                     <div class="row">
                                         <div class="col-6">
-                                            <!-- Image Upload -->
-                                            <x-input-label for="userImg" :value="__('Upload Image')" />
-                                            <div class="mb-3">
-                                                <input type="file" class="form-control" name="userImg"
-                                                    id="userImg">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <!-- Image Upload -->
+                                                    <x-input-label for="userImg" :value="__('User Image')" />
+                                                    <div class="mb-3">
+                                                        <input type="file" class="form-control" name="userImg"
+                                                            id="userImg">
+                                                        <x-input-error name="userImg" class="mt-2" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="image-area">
+                                                        user Image
+                                                    </div>
+                                                </div>
                                             </div>
-
                                         </div>
                                         <div class="col-6">
 
@@ -310,7 +328,7 @@
                                             <div class="mb-3">
                                                 <input type="file" class="form-control" name="profileImg"
                                                     id="profileImg">
-
+                                                <x-input-error name="profileImg" class="mt-2" />
                                             </div>
                                         </div>
                                     </div>
@@ -321,10 +339,10 @@
                                             <x-input-label for="email" :value="__('Email')" />
                                             <div class="mb-3">
                                                 <x-text-input id="email" class="form-control" type="email"
-                                                    name="email" :value="old('email')"  autofocus
+                                                    name="email" :value="old('email')" autofocus
                                                     autocomplete="username" placeholder="Email" aria-label="Email"
                                                     aria-describedby="email-addon" />
-
+                                                <x-input-error name="email" class="mt-2" />
                                             </div>
 
                                         </div>
@@ -333,7 +351,7 @@
                                             <x-input-label for="password" :value="__('Password')" />
                                             <div class="mb-3">
                                                 <x-text-input id="password" class="form-control" type="password"
-                                                    name="password"  autocomplete="current-password"
+                                                    name="password" autocomplete="current-password"
                                                     placeholder="Password" />
 
                                             </div>
@@ -344,7 +362,7 @@
                                             <x-input-label for="password" :value="__('Confirm Password')" />
                                             <div class="mb-3">
                                                 <x-text-input id="password" class="form-control" type="password"
-                                                    name="password"  autocomplete="current-password"
+                                                    name="password" autocomplete="current-password"
                                                     placeholder="Confirm Password" />
 
                                             </div>
