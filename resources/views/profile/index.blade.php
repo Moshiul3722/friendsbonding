@@ -304,7 +304,7 @@
 
                                     <div class="row">
                                         <div class="col-6">
-                                            <div class="row">
+                                            <div class="row userImageArea">
                                                 <div class="col-6">
                                                     <!-- Image Upload -->
                                                     <x-input-label for="userImg" :value="__('User Image')" />
@@ -315,11 +315,57 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
-                                                    <div class="image-area">
-                                                        user Image
+                                                    <div class="image-container">
+                                                        <div class="image-wrapper">
+                                                            <div class="image">
+                                                                <img id="setUserImage" src="{{asset('assets/img/default-image.png')}}" alt="">
+                                                            </div>
+                                                            <div class="content">
+                                                                <div class="text">No file chosen, yet!</div>
+                                                            </div>
+                                                            <div id="cancel-btn"><i class="fa-solid fa-xmark"></i></div>
+                                                        </div>
                                                     </div>
+
                                                 </div>
                                             </div>
+                                            <style>
+                                                .image-wrapper.active{
+                                                    border:none;
+                                                }
+                                                .image-wrapper.active:hover #cancel-btn{
+                                                    display: block;
+                                                }
+                                                .image-wrapper #cancel-btn:hover{
+                                                    color: #e74c3c;
+                                                }
+                                            </style>
+
+                                            @push('js')
+                                                <script>
+                                                    const imageWrapper = document.querySelector(".image-wrapper");
+                                                    const userImage = document.querySelector("#userImg");
+                                                    const closeButton = document.querySelector("#cancel-btn");
+                                                    const img = document.querySelector("#setUserImage");
+                                                    userImage.addEventListener("change",function(){
+                                                        const file = this.files[0];
+                                                        if(file){
+                                                            const reader = new FileReader();
+                                                            reader.onload = function(){
+                                                                const result = reader.result;
+                                                                img.src = result;
+                                                                imageWrapper.classList.add('active');
+                                                            }
+                                                            closeButton.addEventListener("click",function(){
+                                                                img.src = "";
+                                                                imageWrapper.classList.remove('active');
+                                                            });
+                                                            reader.readAsDataURL(file);
+                                                        }
+                                                    });
+                                                </script>
+                                            @endpush
+
                                         </div>
                                         <div class="col-6">
 
