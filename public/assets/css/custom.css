@@ -92,7 +92,12 @@
     width: 150px;
     height: 160px;
 }
-.image-container .image-wrapper {
+.profile-image-container{
+    width: 150px;
+    height: 160px;
+}
+.image-container .image-wrapper,
+.profile-image-container .profile-image-wrapper {
     position: relative;
     height: 150px;
     width: 100%;
@@ -106,7 +111,8 @@
     font-size: .8rem;
     background: #fff;
 }
-.image-wrapper .image{
+.image-wrapper .image,
+.profile-image-wrapper .image{
     position: absolute;
     height: 100%;
     width: 100%;
@@ -114,12 +120,14 @@
     align-items: center;
     justify-content: center;
 }
-.image-wrapper .image img{
+.image-wrapper .image img,
+.profile-image-wrapper .image img{
     height: 100%;
     width: 100%;
     object-fit: cover
 }
-.image-wrapper #cancel-btn{
+.image-wrapper #cancel-btn,
+.profile-image-wrapper #profile-cancel-btn{
     position: absolute;
     right:10px;
     top:2px;
@@ -129,14 +137,33 @@
     display: none;
 }
 
-.image-wrapper.active {
+.image-wrapper.active,
+.profile-image-wrapper.active {
     border: none;
 }
 
-.image-wrapper.active:hover #cancel-btn {
+.image-wrapper.active:hover #cancel-btn,
+.profile-image-wrapper.active:hover #profile-cancel-btn {
     display: block;
 }
 
-.image-wrapper #cancel-btn:hover {
+.image-wrapper #cancel-btn:hover,
+.profile-image-wrapper #profile-cancel-btn:hover {
+    color: #e74c3c;
+}
+.image-wrapper.active,
+.profile-image-wrapper.active{
+    border:none;
+}
+#setUserImage,
+#setProfileImage{
+    display: none;
+}
+.image-wrapper.active:hover #cancel-btn,
+.profile-image-wrapper.active:hover #profile-cancel-btn{
+    display: block;
+}
+.image-wrapper #cancel-btn:hover,
+.profile-image-wrapper #profile-cancel-btn:hover{
     color: #e74c3c;
 }

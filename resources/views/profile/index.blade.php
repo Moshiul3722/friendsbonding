@@ -318,64 +318,48 @@
                                                     <div class="image-container">
                                                         <div class="image-wrapper">
                                                             <div class="image">
-                                                                <img id="setUserImage" src="{{asset('assets/img/default-image.png')}}" alt="">
+                                                                <img id="setUserImage" src="" alt="">
                                                             </div>
                                                             <div class="content">
                                                                 <div class="text">No file chosen, yet!</div>
                                                             </div>
-                                                            <div id="cancel-btn"><i class="fa-solid fa-xmark"></i></div>
+                                                            <div id="cancel-btn"><i class="fa-solid fa-xmark"></i>
+                                                            </div>
                                                         </div>
                                                     </div>
 
                                                 </div>
                                             </div>
-                                            <style>
-                                                .image-wrapper.active{
-                                                    border:none;
-                                                }
-                                                .image-wrapper.active:hover #cancel-btn{
-                                                    display: block;
-                                                }
-                                                .image-wrapper #cancel-btn:hover{
-                                                    color: #e74c3c;
-                                                }
-                                            </style>
-
-                                            @push('js')
-                                                <script>
-                                                    const imageWrapper = document.querySelector(".image-wrapper");
-                                                    const userImage = document.querySelector("#userImg");
-                                                    const closeButton = document.querySelector("#cancel-btn");
-                                                    const img = document.querySelector("#setUserImage");
-                                                    userImage.addEventListener("change",function(){
-                                                        const file = this.files[0];
-                                                        if(file){
-                                                            const reader = new FileReader();
-                                                            reader.onload = function(){
-                                                                const result = reader.result;
-                                                                img.src = result;
-                                                                imageWrapper.classList.add('active');
-                                                            }
-                                                            closeButton.addEventListener("click",function(){
-                                                                img.src = "";
-                                                                imageWrapper.classList.remove('active');
-                                                            });
-                                                            reader.readAsDataURL(file);
-                                                        }
-                                                    });
-                                                </script>
-                                            @endpush
-
                                         </div>
                                         <div class="col-6">
-
-                                            <!-- Profile Image Upload -->
-                                            <x-input-label for="profileImg" :value="__('Profile Background Image')" />
-                                            <div class="mb-3">
-                                                <input type="file" class="form-control" name="profileImg"
-                                                    id="profileImg">
-                                                <x-input-error name="profileImg" class="mt-2" />
+                                            <div class="row userImageArea">
+                                                <div class="col-6">
+                                                    <!-- Profile Image Upload -->
+                                                    <x-input-label for="profileImg" :value="__('Profile Background Image')" />
+                                                    <div class="mb-3">
+                                                        <input type="file" class="form-control" name="profileImg"
+                                                            id="profileImage">
+                                                        <x-input-error name="profileImg" class="mt-2" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="profile-image-container">
+                                                        <div class="profile-image-wrapper">
+                                                            <div class="image">
+                                                                <img id="setProfileImage" src=""
+                                                                    alt="">
+                                                            </div>
+                                                            <div class="content">
+                                                                <div class="text">No file chosen, yet!</div>
+                                                            </div>
+                                                            <div id="profile-cancel-btn"><i
+                                                                    class="fa-solid fa-xmark"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -436,10 +420,60 @@
             </div>
         </div>
     </form>
-
-
-
-
-
-
 </x-app-layout>
+
+@push('js')
+    <script>
+        const imageWrapper = document.querySelector(".image-wrapper");
+        const profileImageWrapper = document.querySelector(".profile-image-wrapper");
+
+        const userImage = document.querySelector("#userImg");
+        const profileImage = document.querySelector("#profileImage");
+
+        const closeButton = document.querySelector("#cancel-btn");
+        const profileCloseButton = document.querySelector("#profile-cancel-btn");
+
+        const img = document.querySelector("#setUserImage");
+        const setProfileImage = document.querySelector("#setProfileImage");
+
+        userImage.addEventListener("change", function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function() {
+                    const result = reader.result;
+                    img.src = result;
+                    imageWrapper.classList.add('active');
+                    img.style = "display:block";
+                }
+                closeButton.addEventListener("click", function() {
+                    img.src = "";
+                    imageWrapper.classList.remove('active');
+                    img.style = "display:none";
+                });
+                reader.readAsDataURL(file);
+            }
+        });
+
+
+
+        profileImage.addEventListener("change", function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function() {
+                    const result = reader.result;
+                    setProfileImage.src = result;
+                    profileImageWrapper.classList.add('active');
+                    setProfileImage.style = "display:block";
+                }
+                profileCloseButton.addEventListener("click", function() {
+                    setProfileImage.src = "";
+                    profileImageWrapper.classList.remove('active');
+                    setProfileImage.style = "display:none";
+                });
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+@endpush
