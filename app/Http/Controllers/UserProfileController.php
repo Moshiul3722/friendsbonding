@@ -7,6 +7,7 @@ use App\Models\Profile;
 use App\Models\Health;
 use App\Models\Media;
 use App\Models\Occupation;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,10 +19,20 @@ class UserProfileController extends Controller
         return view('profile.index');
     }
 
+    public function show()
+    {
+        return view('profile.view')->with([
+            'userInfo'=> User::where('id', Auth::user()->id)->get(),
+            'profileInfo'=>Profile::where('user_id', Auth::user()->id)->get(),
+            'batchInfo'=>Batch::where('user_id', Auth::user()->id)->get(),
+            'healthInfo'=>Health::where('user_id', Auth::user()->id)->get(),
+            'occupationInfo'=>Occupation::where('user_id', Auth::user()->id)->get(),
+            'mediaInfo'=>Media::where('user_id', Auth::user()->id)->get(),
+        ]);
+    }
+
     public function storeUserProfile(Request $request)
     {
-        // dd($request->all());
-
         $request->validate([
             'fname' => ['required', 'max:255', 'string'],
             'lname' => ['required', 'max:255', 'string'],
@@ -43,17 +54,32 @@ class UserProfileController extends Controller
             'officeaddress' => ['required', 'string'],
             'fbid' => ['required', 'string'],
             'whatapp' => ['required', 'string'],
+            // 'userImg'=>['image'],
+            // 'profileImg'=>['image']
         ]);
 
-        // $request->validate([
-        //     'userImg' => ['image'],
-        //     'profileImg' => ['image'],
-        //     'email' => ['required', 'max:255', 'string', 'unique:clients,email'],
-        //     'password' => ['max:255', 'string'],
-        //     'status' => ['not_in:none', 'string'],
-        // ]);
+        // dd($request->all());
 
 
+        // dd($request->file('userImg'));
+
+        $user_thumb = '';
+        if (!empty($request->file('userImg'))) {
+            $user_thumb = time() . '-' . $request->file('userImg')->getClientOriginalName();
+            $request->file('userImg')->storeAs('public/uploads', $user_thumb);
+        }
+
+        // dd($user_thumb);
+
+        User::find(Auth::user()->id)->update([
+            'image'=>$user_thumb
+        ]);
+
+        $profile_thumb = '';
+        if (!empty($request->file('profileImg'))) {
+            $profile_thumb = time() . '-' . $request->file('profileImg')->getClientOriginalName();
+            $request->file('profileImg')->storeAs('public/uploads', $profile_thumb);
+        }
 
         Profile::create([
             'uname' => $request->uname,
@@ -64,6 +90,7 @@ class UserProfileController extends Controller
             'mobile' => $request->mobile,
             'emergencyContact' => $request->emergencyContact,
             'user_id' => Auth::user()->id,
+            'profileImg'=>$profile_thumb
         ]);
 
         Batch::create([
@@ -102,6 +129,6 @@ class UserProfileController extends Controller
             ]);
         }
 
-        return redirect()->route('profile')->with('success', 'Client added successfully');
+        return redirect()->route('view.profile')->with('success', 'Client added successfully');
     }
 }

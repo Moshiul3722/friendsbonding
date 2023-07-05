@@ -37,7 +37,8 @@ Route::prefix('user')->middleware(['auth', 'verified'])->group(function () {
 
 
 Route::prefix('profile')->middleware(['auth', 'verified'])->group(function () {
-    Route::get('/', [ProfileController::class,'index'])->name('profile');
+    // Route::get('/', [ProfileController::class,'index'])->name('profile');
+    Route::get('/show', [UserProfileController::class,'show'])->name('view.profile');
     Route::get('/', [UserProfileController::class,'index'])->name('profile');
     Route::post('/addProfile', [UserProfileController::class,'storeUserProfile'])->name('addProfile');
 });

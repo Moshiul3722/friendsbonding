@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <form method="POST" action="{{ route('addProfile') }}">
+    <form method="POST" action="{{ route('addProfile') }}"  enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-4 mt-4">
@@ -362,44 +362,6 @@
 
                                         </div>
                                     </div>
-
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <!-- Email Address -->
-                                            <x-input-label for="email" :value="__('Email')" />
-                                            <div class="mb-3">
-                                                <x-text-input id="email" class="form-control" type="email"
-                                                    name="email" :value="old('email')" autofocus
-                                                    autocomplete="username" placeholder="Email" aria-label="Email"
-                                                    aria-describedby="email-addon" />
-                                                <x-input-error name="email" class="mt-2" />
-                                            </div>
-
-                                        </div>
-                                        <div class="col-4">
-                                            <!-- Password -->
-                                            <x-input-label for="password" :value="__('Password')" />
-                                            <div class="mb-3">
-                                                <x-text-input id="password" class="form-control" type="password"
-                                                    name="password" autocomplete="current-password"
-                                                    placeholder="Password" />
-
-                                            </div>
-
-                                        </div>
-                                        <div class="col-4">
-                                            <!-- Confirm Password -->
-                                            <x-input-label for="password" :value="__('Confirm Password')" />
-                                            <div class="mb-3">
-                                                <x-text-input id="password" class="form-control" type="password"
-                                                    name="password" autocomplete="current-password"
-                                                    placeholder="Confirm Password" />
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
@@ -420,7 +382,7 @@
             </div>
         </div>
     </form>
-</x-app-layout>
+
 
 @push('js')
     <script>
@@ -477,3 +439,4 @@
         });
     </script>
 @endpush
+</x-app-layout>

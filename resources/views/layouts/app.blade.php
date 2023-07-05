@@ -127,25 +127,6 @@
     @stack('js')
 
     <script>
-        (function() {
-            var x = new mdDateTimePicker.default({
-                type: 'date'
-            });
-
-            document.getElementById('trigger').addEventListener('click', function() {
-                x.toggle();
-            });
-
-            x.trigger = document.getElementById('trigger');
-
-            // console.log(x.trigger);
-
-            document.getElementById('trigger').addEventListener('onOk', function() {
-                this.value = x.time.toString();
-            });
-
-        }).call(this);
-
 
         var ctx = document.getElementById("chart-bars").getContext("2d");
 
