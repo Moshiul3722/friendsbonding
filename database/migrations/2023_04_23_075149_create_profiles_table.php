@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('mobile')->nullable();
             $table->string('emergencyContact')->nullable();
             $table->string('profileImg')->nullable();
+            $table->text('socialId')->nullable();
             $table->foreignId('user_id');
             $table->timestamps();
         });

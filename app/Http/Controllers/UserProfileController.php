@@ -21,14 +21,7 @@ class UserProfileController extends Controller
 
     public function show()
     {
-        return view('profile.view')->with([
-            // 'userInfo'=> User::where('id', Auth::user()->id)->first(),
-            // 'profileInfo'=>Profile::where('user_id', Auth::user()->id)->first(),
-            // 'batchInfo'=>Batch::where('user_id', Auth::user()->id)->first(),
-            // 'healthInfo'=>Health::where('user_id', Auth::user()->id)->first(),
-            // 'occupationInfo'=>Occupation::where('user_id', Auth::user()->id)->first(),
-            // 'mediaInfo'=>Media::where('user_id', Auth::user()->id)->first(),
-        ]);
+        return view('profile.view');
     }
 
     public function storeUserProfile(Request $request)
@@ -58,6 +51,11 @@ class UserProfileController extends Controller
             // 'profileImg'=>['image']
         ]);
 
+        $mediaIds =[
+            'fbId'=>$request->fbid,
+            'whatappId'=>$request->whatapp,
+        ];
+
         // dd($request->all());
 
 
@@ -67,6 +65,16 @@ class UserProfileController extends Controller
         if (!empty($request->file('userImg'))) {
             $user_thumb = time() . '-' . $request->file('userImg')->getClientOriginalName();
             $request->file('userImg')->storeAs('public/uploads', $user_thumb);
+        }
+
+        $thumb = $course->thumbnail;
+
+
+        // dd($thumb);
+        if (!empty($request->file('thumbnail'))) {
+            Storage::delete('public/uploads/' . $thumb);
+            $thumb = time() . '-' . $request->file('thumbnail')->getClientOriginalName();
+            $request->file('thumbnail')->storeAs('public/uploads', $thumb);
         }
 
         // dd($user_thumb);
@@ -90,6 +98,7 @@ class UserProfileController extends Controller
             'permanentadd' => $request->permanentadd,
             'mobile' => $request->mobile,
             'emergencyContact' => $request->emergencyContact,
+            'socialId' => json_encode($mediaIds),
             'profileImg'=>$profile_thumb
         ]);
 
@@ -111,20 +120,17 @@ class UserProfileController extends Controller
             'officeaddress' => $request->officeaddress,
         ]);
 
-        $mediaIds =[
-            'fbId'=>$request->fbid,
-            'whatappId'=>$request->whatapp,
-        ];
 
 
         // dd($mediaIds);
-        foreach($mediaIds as $key=> $mediaId){
-            Media::updateOrCreate(['user_id' => Auth::user()->id],['meta_key'=>$key],
-            [
-                'mediaId' => $mediaId,
-            ]);
-        }
+        // foreach($mediaIds as $mediaId){
+        //     Media::Create(['user_id' => Auth::user()->id],
+        //     [
+        //         'mediaId' => $mediaId,
+        //     ]);
+        // }
 
         return redirect()->route('view.profile')->with('success', 'Client added successfully');
     }
+
 }

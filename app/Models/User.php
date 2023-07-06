@@ -39,9 +39,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
-
-
     // One to hasOne Relationsip
     public function profile()
     {
