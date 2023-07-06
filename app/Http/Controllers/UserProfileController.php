@@ -22,12 +22,12 @@ class UserProfileController extends Controller
     public function show()
     {
         return view('profile.view')->with([
-            'userInfo'=> User::where('id', Auth::user()->id)->get(),
-            'profileInfo'=>Profile::where('user_id', Auth::user()->id)->get(),
-            'batchInfo'=>Batch::where('user_id', Auth::user()->id)->get(),
-            'healthInfo'=>Health::where('user_id', Auth::user()->id)->get(),
-            'occupationInfo'=>Occupation::where('user_id', Auth::user()->id)->get(),
-            'mediaInfo'=>Media::where('user_id', Auth::user()->id)->get(),
+            // 'userInfo'=> User::where('id', Auth::user()->id)->first(),
+            // 'profileInfo'=>Profile::where('user_id', Auth::user()->id)->first(),
+            // 'batchInfo'=>Batch::where('user_id', Auth::user()->id)->first(),
+            // 'healthInfo'=>Health::where('user_id', Auth::user()->id)->first(),
+            // 'occupationInfo'=>Occupation::where('user_id', Auth::user()->id)->first(),
+            // 'mediaInfo'=>Media::where('user_id', Auth::user()->id)->first(),
         ]);
     }
 
@@ -81,7 +81,8 @@ class UserProfileController extends Controller
             $request->file('profileImg')->storeAs('public/uploads', $profile_thumb);
         }
 
-        Profile::create([
+        Profile::updateOrCreate(['user_id' => Auth::user()->id],
+        [
             'uname' => $request->uname,
             'dob' => $request->dob,
             'religion' => $request->religion,
@@ -89,30 +90,25 @@ class UserProfileController extends Controller
             'permanentadd' => $request->permanentadd,
             'mobile' => $request->mobile,
             'emergencyContact' => $request->emergencyContact,
-            'user_id' => Auth::user()->id,
             'profileImg'=>$profile_thumb
         ]);
 
-        Batch::create([
+        Batch::updateOrCreate(['user_id' => Auth::user()->id,],[
             'group' => $request->group,
             'batch' => $request->batch,
             'session' => $request->session,
             'regno' => $request->regno,
-            'user_id' => Auth::user()->id,
         ]);
 
-        Health::create([
+        Health::updateOrCreate(['user_id' => Auth::user()->id],[
             'blood_group' => $request->blood_group,
-            'user_id' => Auth::user()->id,
         ]);
 
-        Occupation::create([
+        Occupation::updateOrCreate(['user_id' => Auth::user()->id],[
             'occupation' => $request->occupation,
             'organization' => $request->organization,
             'designation' => $request->designation,
             'officeaddress' => $request->officeaddress,
-            'user_id' => Auth::user()->id,
-
         ]);
 
         $mediaIds =[
@@ -122,10 +118,10 @@ class UserProfileController extends Controller
 
 
         // dd($mediaIds);
-        foreach($mediaIds as $mediaId){
-            Media::create([
+        foreach($mediaIds as $key=> $mediaId){
+            Media::updateOrCreate(['user_id' => Auth::user()->id],['meta_key'=>$key],
+            [
                 'mediaId' => $mediaId,
-                'user_id' => Auth::user()->id
             ]);
         }
 

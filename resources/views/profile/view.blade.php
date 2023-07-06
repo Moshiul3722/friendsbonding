@@ -25,6 +25,6 @@
     </div>
 
 <h1>Thanks for insert Data</h1>
-{{ $profileInfo['uname'] }}
+{{auth()->user()->profile->uname}}
 
 </x-app-layout>
