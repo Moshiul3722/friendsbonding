@@ -53,8 +53,6 @@
                                                     placeholder="Last Name" autofocus />
                                                 <x-input-error name="lname" class="mt-2" />
                                             </div>
-
-
                                         </div>
                                     </div>
 

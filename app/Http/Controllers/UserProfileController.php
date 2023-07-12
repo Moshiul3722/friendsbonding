@@ -10,6 +10,7 @@ use App\Models\Occupation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserProfileController extends Controller
 {
@@ -56,45 +57,35 @@ class UserProfileController extends Controller
             'whatappId'=>$request->whatapp,
         ];
 
-        // dd($request->all());
+        $userData=User::find(Auth::user()->id);
 
-
-        // dd($request->file('userImg'));
-
-        // $user_thumb = '';
-        // if (!empty($request->file('userImg'))) {
-        //     $user_thumb = time() . '-' . $request->file('userImg')->getClientOriginalName();
-        //     $request->file('userImg')->storeAs('public/uploads', $user_thumb);
-        // }
-
-
-
-        if($request->file('userImg')){
-            $user_thumb = '';
-            if (!empty($request->file('userImg'))) {
-                $user_thumb = time() . '-' . $request->file('userImg')->getClientOriginalName();
-                $request->file('userImg')->storeAs('public/uploads', $user_thumb);
-            }
+        if(empty($userData->image)){
+            $user_thumb='';
         }else{
-            $thumb = $course->thumbnail;
-
-
-            // dd($thumb);
-            if (!empty($request->file('thumbnail'))) {
-                Storage::delete('public/uploads/' . $thumb);
-                $thumb = time() . '-' . $request->file('thumbnail')->getClientOriginalName();
-                $request->file('thumbnail')->storeAs('public/uploads', $thumb);
-            }
+            $user_thumb = $userData->image;
         }
 
-        // dd($user_thumb);
+        if (!empty($request->file('userImg'))) {
+            Storage::delete('public/uploads/' . $user_thumb);
+            $user_thumb = time() . '-' . $request->file('userImg')->getClientOriginalName();
+            $request->file('userImg')->storeAs('public/uploads', $user_thumb);
+        }
 
         User::find(Auth::user()->id)->update([
             'image'=>$user_thumb
         ]);
 
-        $profile_thumb = '';
+        $profileData=Profile::where('user_id' ,'=', Auth::user()->id)->first();
+
+        // dd($profileData);
+
+        if(empty($profileData->profileImg)){
+            $profile_thumb = '';
+        }else{
+            $profile_thumb = $profileData->profileImg;
+        }
         if (!empty($request->file('profileImg'))) {
+            Storage::delete('public/uploads/' . $profile_thumb);
             $profile_thumb = time() . '-' . $request->file('profileImg')->getClientOriginalName();
             $request->file('profileImg')->storeAs('public/uploads', $profile_thumb);
         }
@@ -130,17 +121,7 @@ class UserProfileController extends Controller
             'officeaddress' => $request->officeaddress,
         ]);
 
-
-
-        // dd($mediaIds);
-        // foreach($mediaIds as $mediaId){
-        //     Media::Create(['user_id' => Auth::user()->id],
-        //     [
-        //         'mediaId' => $mediaId,
-        //     ]);
-        // }
-
-        return redirect()->route('view.profile')->with('success', 'Client added successfully');
+        return redirect()->route('view.profile')->with('success', 'Profile add/Updated successfully');
     }
 
 }

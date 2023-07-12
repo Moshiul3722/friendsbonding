@@ -7,7 +7,8 @@
         <div class="row gx-4">
             <div class="col-auto">
                 <div class="avatar avatar-xl position-relative">
-                    <img class="w-100 border-radius-lg shadow-sm" src="{{ getAssetUrl(auth()->user()->image, 'storage/uploads') }}" alt="profile_image">
+                    <img class="w-100 border-radius-lg shadow-sm"
+                        src="{{ getAssetUrl(auth()->user()->image, 'storage/uploads') }}" alt="profile_image">
                 </div>
             </div>
             <div class="col-auto my-auto">
@@ -23,8 +24,35 @@
 
         </div>
     </div>
+    <div class="row" style="font-size: 18px">
+        <div class="col-4 mt-4">
+            <div class="card mb-4">
+                <div class="card-body p-3">
+                    <div class="col-xl-12 col-md-12 mb-xl-0 mb-4">
+                        <div class="card card-blog card-plain">
 
-<h1>Thanks for insert Data</h1>
-{{auth()->user()->profile->uname}}
+                            <div class="card-body pb-0">
+                                <div class="row">
+                                    <div>
+                                        <x-input-label for="fname" :value="__('Name :')" />
+                                        <span>{{ ucfirst(trans(auth()->user()->name)) }}</span>
+                                    </div>
+                                    <div class="mt-1">
+                                        <x-input-label for="fname" :value="__('Nick Name :')" />
+                                        <span>{{ ucfirst(trans(auth()->user()->profile->uname)) }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
 
 </x-app-layout>
