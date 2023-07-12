@@ -61,20 +61,30 @@ class UserProfileController extends Controller
 
         // dd($request->file('userImg'));
 
-        $user_thumb = '';
-        if (!empty($request->file('userImg'))) {
-            $user_thumb = time() . '-' . $request->file('userImg')->getClientOriginalName();
-            $request->file('userImg')->storeAs('public/uploads', $user_thumb);
-        }
-
-        $thumb = $course->thumbnail;
+        // $user_thumb = '';
+        // if (!empty($request->file('userImg'))) {
+        //     $user_thumb = time() . '-' . $request->file('userImg')->getClientOriginalName();
+        //     $request->file('userImg')->storeAs('public/uploads', $user_thumb);
+        // }
 
 
-        // dd($thumb);
-        if (!empty($request->file('thumbnail'))) {
-            Storage::delete('public/uploads/' . $thumb);
-            $thumb = time() . '-' . $request->file('thumbnail')->getClientOriginalName();
-            $request->file('thumbnail')->storeAs('public/uploads', $thumb);
+
+        if($request->file('userImg')){
+            $user_thumb = '';
+            if (!empty($request->file('userImg'))) {
+                $user_thumb = time() . '-' . $request->file('userImg')->getClientOriginalName();
+                $request->file('userImg')->storeAs('public/uploads', $user_thumb);
+            }
+        }else{
+            $thumb = $course->thumbnail;
+
+
+            // dd($thumb);
+            if (!empty($request->file('thumbnail'))) {
+                Storage::delete('public/uploads/' . $thumb);
+                $thumb = time() . '-' . $request->file('thumbnail')->getClientOriginalName();
+                $request->file('thumbnail')->storeAs('public/uploads', $thumb);
+            }
         }
 
         // dd($user_thumb);
