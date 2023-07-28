@@ -62,4 +62,8 @@ class DashboardController extends Controller
     {
         //
     }
+
+    public function listUsers() {
+        return view('profile.listUser');
+    }
 }
